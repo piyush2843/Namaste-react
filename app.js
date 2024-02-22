@@ -1,18 +1,18 @@
-    let parent=React.createElement("div",{id:"parent"},
-    [
-        React.createElement("div",{id:"child1"},[
-            React.createElement("h1",{},"I am h1 tag"),
-            React.createElement("h2",{},"I am h2 tag"),
-        ]),
-        React.createElement("div",{id:"child2"},[
-            React.createElement("h1",{},"I am h1 tag"),
-            React.createElement("h2",{},"I am h2 tag"),
-        ]),
-    ]);
-    let root=ReactDOM.createRoot(document.querySelector(".root"));
-    root.render(parent);
+import React from "react";
+import ReactDOM from "react-dom";
 
-    // let head = document.createElement("h1");
-    // head.innerText = "This is created by JavaScript";
-    // let root=document.querySelector(".root");
-    // root.appendChild(head);
+import Body from "./src/Components/Body";
+import Header from "./src/Components/Header";
+
+const AppLayout = () => {
+  return (
+    <React.Fragment>
+     <Header />
+      <Body />
+     
+    </React.Fragment>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
