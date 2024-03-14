@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import IMG from "../assets/Tasty_Trove.png"
+import { Link } from "react-router-dom";
 const Header = ()=>{
     const [btnName,setBtnName] = useState("Login");
     return(
@@ -9,10 +10,10 @@ const Header = ()=>{
             </div>
             <div className="nav-items w-[70%] flex justify-center items-center">
                 <ul className="flex">
-                    <li className="pr-24 text-2xl">Home</li>
-                    <li className="pr-24 text-2xl">About Us</li>
-                    <li className="pr-24 text-2xl">Contact Us</li>
-                    <li className="pr-24 text-2xl">Cart</li>
+                    <li className="pr-24 text-2xl"> <Link to={"/"}>Home</Link></li>
+                    <li className="pr-24 text-2xl"> <Link to={"/about"}>About Us</Link></li>
+                    <li className="pr-24 text-2xl"> <Link to={"/contactus"}>Contact Us</Link></li>
+                    <li className="pr-24 text-2xl">  <Link >Cart</Link></li>
                     <button 
                     className="pr-24 text-2xl" 
                     onClick={()=>{

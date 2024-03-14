@@ -1,11 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
+import {Link} from "react-router-dom";
 const Body = ()=>{
     const [RestroList,setRestrolist] = useState([]);
     const [searchText,setSearchText] = useState("");
     const [filteredRestro,setFilteredRestro] = useState([]);
-    
+    //if no dependency array => useEffect is called on every render
+    //if dependency array is empty = [] => useEffect is called on initial render(just once)
+    //if dependency  array is [btnName] => called everytime btnName is updated
+
     useEffect(()=>{
       fetchData();
     },[])
@@ -18,8 +22,8 @@ const Body = ()=>{
         const jsonData = await data.json();
         setRestrolist(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestro(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        return jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     }
+    
     return RestroList.length === 0 ? <Shimmer/> :( 
         <div>
             <div className="restaurant-container">
@@ -29,7 +33,6 @@ const Body = ()=>{
                 onChange={(e)=>{
                   setSearchText(e.target.value);
                 }}
-                
                 value={searchText}/>
                 <button className="ml-1" onClick={()=>{
                   const sortedList = RestroList.filter((res)=>{
@@ -41,17 +44,16 @@ const Body = ()=>{
                 className="m-5 border border-black p-1 rounded-[5px]"
                 onClick={()=>{
                   let newlist = RestroList.filter(
-                    (res)=> res?.info.avgRating > 4
+                    (res)=> res?.info?.avgRating > 4
                     );
-                  console.log(newlist)
-                  setRestrolist(newlist);
+                  setFilteredRestro(newlist);
                 }}
                 >Top Rated Restaurant</button>
               </div>
                 <div className=" restaurant-container flex flex-wrap">
                   {
                     filteredRestro.map((restro)=>(
-                      <RestaurantCard key={restro?.info?.id} resdata={restro}/>
+                      <Link key={restro?.info?.id} to={"./restaurant/" + restro?.info?.id}><RestaurantCard  resdata={restro}/></Link>
                     ))
                   }
                 </div>
