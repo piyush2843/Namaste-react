@@ -8,8 +8,12 @@ const RestaurantMenu = ()=>{
     const ResData = useRestaurantMenu(resId);
     const status = useOnlineStatus();
     if(ResData === null ) return <Shimmer/>;
-    const { name,cuisines,costForTwoMessage } = ResData?.data?.cards[0]?.card?.card?.info;
-    const {itemCards} = ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card; 
+    // console.log(ResData)
+    // console.log(ResData?.data?.cards[2]?.card?.card?.info)
+    console.log(ResData?.data?.cards[2]?.card?.card?.info);
+    const { name,cuisines,costForTwoMessage } = ResData?.data?.cards[2]?.card?.card?.info;
+    // const {itemCards} = ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card; 
+    const {itemCards} = ResData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card; 
     return(
         <div className="menu ml-[45%] pt-[50px]">
             <h1 className="text-red-500 text-5xl  py-[20px]">{name}</h1>
