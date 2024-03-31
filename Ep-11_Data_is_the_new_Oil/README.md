@@ -46,4 +46,4 @@ Routing
         -<this.setState> => state variable is updated
 -------Update----------
     -Render(with API data)
-    -componentDidUpdate
+    -componentDidUpdate    
